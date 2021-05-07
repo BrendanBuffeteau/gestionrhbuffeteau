@@ -1,0 +1,5 @@
+fr\formation\afpa\controller\LoginController.class
+fr\formation\afpa\config\ApplicationInitializer.class
+fr\formation\afpa\interceptor\LogInterceptor.class
+fr\formation\afpa\config\ApplicationConfigurerAdapter.class
+fr\formation\afpa\config\WebMvcConfig.class
