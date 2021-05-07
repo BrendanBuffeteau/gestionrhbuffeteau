@@ -22,21 +22,16 @@
 					<a class="nav-link" aria-current="page"
 						href="${pageContext.request.contextPath}/contact"> <spring:message
 							code="navbar.contact" />
-					</a> <a class="nav-link"
-						href="${pageContext.request.contextPath}/listemanager"><spring:message
-							code="navbar.managerlist" /></a> <a class="nav-link"
-						href="${pageContext.request.contextPath}/listeemployee"><spring:message
-							code="navbar.employeelist" /></a>
-					<a class="nav-link"
-						href="${pageContext.request.contextPath}/parameters"><spring:message
-							code="navbar.param" /></a>
+					</a> <a class="nav-link" href="${pageContext.request.contextPath}/who">
+						<spring:message code="navbar.who" />
+					</a>
 
 
 				</div>
 			</div>
 		</div>
 		<div class="d-flex flex-row-reverse bd-highlight">
-			<a class="nav-link"
+		 <a class="nav-link"
 				href="${pageContext.request.contextPath}/listeemployee?lang=en">
 				<img
 				src="${pageContext.request.contextPath}/styles/icon/angleterre.png"
@@ -45,9 +40,10 @@
 				href="${pageContext.request.contextPath}/listeemployee?lang=fr">
 				<img src="${pageContext.request.contextPath}/styles/icon/france.png"
 				alt="Français" />
-			</a> <a class="nav-link"
+			</a>
+				<a class="nav-link"
 				href="${pageContext.request.contextPath}/loginlogout"> <spring:message
-					code="navbar.logout" />
+					code="navbar.login" />
 			</a>
 		</div>
 	</nav>

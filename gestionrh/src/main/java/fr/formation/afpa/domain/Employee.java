@@ -34,7 +34,7 @@ public class Employee implements java.io.Serializable {
 	private Integer empId;
 	private Branch branch;
 	private Department department;
-	private Employee employee;
+	private Employee manager;
 	private Date endDate;
 	private String firstName;
 	private String lastName;
@@ -57,7 +57,7 @@ public class Employee implements java.io.Serializable {
 			String lastName, Date startDate, String title, 			Set<Employee> employees, Set<Employee> employees_1) {
 		this.branch = branch;
 		this.department = department;
-		this.employee = employee;
+		this.manager = employee;
 		this.endDate = endDate;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -125,12 +125,12 @@ public class Employee implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "SUPERIOR_EMP_ID")
-	public Employee getEmployee() {
-		return this.employee;
+	public Employee getManager() {
+		return this.manager;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setManager(Employee newmanager) {
+		this.manager = newmanager;
 	}
 
 	@Temporal(TemporalType.DATE)
