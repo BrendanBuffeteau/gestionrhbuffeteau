@@ -32,7 +32,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/styles/**") //
-        .addResourceLocations("/WEB-INF/resources/css/").setCachePeriod(31556926);
+        .addResourceLocations("/WEB-INF/resources/").setCachePeriod(31556926);
 	}
 
 }

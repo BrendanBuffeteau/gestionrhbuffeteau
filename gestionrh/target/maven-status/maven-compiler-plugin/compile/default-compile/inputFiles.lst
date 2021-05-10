@@ -1,11 +1,13 @@
+B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\config\WebMvcConfig.java
+B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\domain\Compte.java
 B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\domain\Employee.java
 B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\interceptor\LogInterceptor.java
-B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\controller\LoginController.java
+B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\dao\ICompteDaoJpa.java
 B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\config\ApplicationConfigurerAdapter.java
 B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\domain\Department.java
-B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\config\WebMvcConfig.java
 B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\dao\EmployeeDaoJpa.java
 B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\dao\IEmployeeDaoJpa.java
-B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\domain\Compte.java
+B:\github\gestionrhbuffeteau\gestionrh\src\main\java\service\CompteService.java
+B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\dao\CompteDaoJpa.java
 B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\controller\LogController.java
 B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\config\ApplicationInitializer.java

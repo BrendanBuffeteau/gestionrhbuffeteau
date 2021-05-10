@@ -3,9 +3,11 @@ fr\formation\afpa\config\ApplicationConfigurerAdapter.class
 fr\formation\afpa\domain\Employee.class
 fr\formation\afpa\config\WebMvcConfig.class
 fr\formation\afpa\domain\Compte.class
-fr\formation\afpa\controller\LoginController.class
 fr\formation\afpa\controller\LogController.class
 fr\formation\afpa\dao\EmployeeDaoJpa.class
+fr\formation\afpa\dao\ICompteDaoJpa.class
 fr\formation\afpa\config\ApplicationInitializer.class
 fr\formation\afpa\dao\IEmployeeDaoJpa.class
 fr\formation\afpa\domain\Department.class
+service\CompteService.class
+fr\formation\afpa\dao\CompteDaoJpa.class
