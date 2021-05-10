@@ -5,20 +5,22 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import org.springframework.stereotype.Repository;
 
 import fr.formation.afpa.domain.Employee;
 
+@Repository
 public class EmployeeDaoJpa implements IEmployeeDaoJpa {
-	private EntityManagerFactory enf;
+	private EntityManagerFactory emf;
 	private EntityManager em;
 	
 	public EmployeeDaoJpa() {
-		enf = Persistence.createEntityManagerFactory("unitBD");
-		em=enf.createEntityManager();
+		emf = Persistence.createEntityManagerFactory("unitBD");
+		em=emf.createEntityManager();
 	}
 	
 	public void beginTransaction() {
-		em = enf.createEntityManager();
+		em = emf.createEntityManager();
 		em.getTransaction().begin(); //charge la transaction
 	}
 	
@@ -53,6 +55,20 @@ public class EmployeeDaoJpa implements IEmployeeDaoJpa {
 	public void deleteById(Integer id) {
 		Employee emp = findById(id);
 		delete(emp);
+	}
+
+	@Override
+	public List<Employee> getManagers() {
+		
+		// SQL = select * from employee where emp_id in (select superior_emp_id from employee where superior_emp_id is not null);
+		
+		String hqlid = "select manager from Employee";
+		 List<Integer> listmanagerid = em.createQuery(hqlid).getResultList();
+		
+		 String hql = "from Employee where emp_id in(:listmanagerid)";
+		 List<Employee> listmanager = em.createQuery(hql).setParameter("listmanagerid", listmanagerid).getResultList();
+		 
+		 return listmanager;
 	}
 
 }

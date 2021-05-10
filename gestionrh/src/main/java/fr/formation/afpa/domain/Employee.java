@@ -49,6 +49,18 @@ public class Employee {
 	@ManyToOne
 	@JoinColumn(name="superior_emp_id")
 	private Employee manager;
+//	
+//	@Column(name="superior_emp_id")
+//	private Integer managerid;
+//	public Integer getManagerid() {
+//	return managerid;
+//}
+//
+//public void setManagerid(Integer managerid) {
+//	this.managerid = managerid;
+//}
+//
+
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "manager")
 	private Set <Employee> employees = new HashSet<Employee>();
@@ -114,11 +126,11 @@ public class Employee {
 		this.department = department;
 	}
 
-	public Employee getmanager() {
+	public Employee getManager() {
 		return manager;
 	}
 
-	public void setEmp(Employee manager) {
+	public void setManager(Employee manager) {
 		this.manager = manager;
 	}
 

@@ -5,19 +5,27 @@ import java.util.List;
 import fr.formation.afpa.domain.Employee;
 
 public interface IEmployeeDaoJpa {
-	
-	//read
+
+	void beginTransaction();
+
+	void commitTransaction();
+
+	// read
 	Employee findById(Integer id);
+
 	List<Employee> findAll();
-	
-	//create
+
+	// create
 	Integer save(Employee e);
-	
-	//update
+
+	// update
 	Employee update(Employee e);
-	
-	//delete
+
+	// delete
 	void delete(Employee e);
+
 	void deleteById(Integer id);
+
+	List<Employee> getManagers();
 
 }
