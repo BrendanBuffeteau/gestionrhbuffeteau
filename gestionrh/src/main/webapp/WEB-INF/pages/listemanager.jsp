@@ -46,10 +46,7 @@
 				</c:forEach>
 			</c:if>
 		</table>
-	</div>
-	
 
-	<div>
 		<form action="getaddemployee">
 			<div class="form-group">
 				<br> <input type="submit" name="submit"

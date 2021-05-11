@@ -33,11 +33,11 @@
 										id="floatingPassword" />
 									<label for="floatingPassword">lastName</label>
 								</div>
-<!-- 								<div class="form-floating marginBottom10"> -->
-<%-- 									<form:input path="startDate" type="date" class="form-control" --%>
-<%-- 										id="floatingPassword" /> --%>
-<!-- 									<label for="floatingPassword">startDate</label> -->
-<!-- 								</div> -->
+								<div class="form-floating marginBottom10">
+									<form:input path="startDate" type="date" class="form-control"
+								id="floatingPassword" />
+									<label for="floatingPassword">startDate</label>
+								</div>
 
 								<div class="form-floating marginBottom10">
 									<form:input path="title" type="text" class="form-control"

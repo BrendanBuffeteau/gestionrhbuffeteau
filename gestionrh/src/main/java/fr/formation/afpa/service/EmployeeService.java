@@ -45,7 +45,6 @@ public class EmployeeService {
 		List<Employee> list = dao.getParameters();
 		dao.commitTransaction();
 		return list;
-		
 	}
 	
 	public Integer save(Employee emp) {
@@ -70,6 +69,14 @@ public class EmployeeService {
 		List<Employee> list = dao.getSubs(idmanager);
 		dao.commitTransaction();
 		return list;
+	}
+
+	public void update(Employee e) {
+		System.out.println("EmployeeService" + " " + "update");
+		dao.beginTransaction();
+		dao.update(e);
+		dao.commitTransaction();
+		
 	}
 	
 }
