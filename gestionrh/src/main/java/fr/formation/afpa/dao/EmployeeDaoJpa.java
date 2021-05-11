@@ -67,8 +67,21 @@ public class EmployeeDaoJpa implements IEmployeeDaoJpa {
 		
 		 String hql = "from Employee where emp_id in(:listmanagerid)";
 		 List<Employee> listmanager = em.createQuery(hql).setParameter("listmanagerid", listmanagerid).getResultList();
-		 
 		 return listmanager;
+	}
+
+	@Override
+	public List<Employee> getParameters() {
+		String hqlid = "from Employee where manager is null";
+		 List<Employee> listparameters = em.createQuery(hqlid).getResultList();
+		return listparameters;
+	}
+	
+	@Override
+	public List<Employee> getSubs(Integer idmanager) {
+		String hqlid = "from Employee where manager.empId = :idmanager";
+		 List<Employee> listsubs = em.createQuery(hqlid).setParameter("idmanager", idmanager).getResultList();
+		return listsubs;
 	}
 
 }

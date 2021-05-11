@@ -24,7 +24,8 @@
 					<th><spring:message code="emp.enddate" /></th>
 					<th><spring:message code="emp.title" /></th>
 					<th><spring:message code="emp.superior" /></th>
-					<th><spring:message code="edit.delete" /></th>
+					<th>Link</th>
+					
 				</tr>
 			</thead>
 			<c:if test="${not empty managers}">
@@ -37,27 +38,19 @@
 						<td>${employee.title}</td>
 						<td>${employee.manager.firstName}
 							${employee.manager.lastName}</td>
-						<td data-value=>
-
-							<form action="listecustomer" method="post">
-								<input type="hidden" name="custid" value="customer.custId">
-								<button name="update" class="btn btn-primary" type="submit"
-									value="update">Edition</button>
-								<button
-									onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ? ID : ${employee.empId}')"
-									name="delete" class="btn btn-danger" type="submit"
-									value="delete">Suppression</button>
-							</form>
-						</td>
+						<td>
+						<a class="nav-link" aria-current="page"
+						href="${pageContext.request.contextPath}/listesub?idmanager=${employee.empId}">
+						Lien</a></td>
 					</tr>
-
 				</c:forEach>
 			</c:if>
 		</table>
 	</div>
+	
 
 	<div>
-		<form action="savecustomer">
+		<form action="getaddemployee">
 			<div class="form-group">
 				<br> <input type="submit" name="submit"
 					class="btn btn-secondary btn-lg"

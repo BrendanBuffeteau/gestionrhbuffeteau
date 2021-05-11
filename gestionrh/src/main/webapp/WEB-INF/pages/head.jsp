@@ -6,6 +6,7 @@
 	href="${pageContext.request.contextPath}/styles/css/navbar.css">
 	<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/styles/css/main.css">
+	 <link href="${pageContext.request.contextPath}/styles/css/glDatePicker.default.css" rel="stylesheet" type="text/css">
 <!-- Responsive META -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gestion RH</title>

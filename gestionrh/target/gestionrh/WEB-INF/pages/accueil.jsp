@@ -11,7 +11,7 @@
 		<jsp:include page="navbar.jsp"></jsp:include>
 
 	<div class="container">
-		Accueil
+		<h3>Accueil</h3>
 	</div>
 	<footer class="footer">
 		<jsp:include page="footer.jsp"></jsp:include>

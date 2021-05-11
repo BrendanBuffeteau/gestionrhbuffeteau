@@ -28,4 +28,8 @@ public interface IEmployeeDaoJpa {
 
 	List<Employee> getManagers();
 
+	List<Employee> getParameters();
+
+	List<Employee> getSubs(Integer idmanager);
+
 }

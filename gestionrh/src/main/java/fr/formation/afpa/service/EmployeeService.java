@@ -39,4 +39,37 @@ public class EmployeeService {
 		
 	}
 	
+	public List<Employee> getParameters(){
+		System.out.println("EmployeeService" + " " + "getParameters");
+		dao.beginTransaction();
+		List<Employee> list = dao.getParameters();
+		dao.commitTransaction();
+		return list;
+		
+	}
+	
+	public Integer save(Employee emp) {
+		System.out.println("EmployeeService" + " " + "save");
+		dao.beginTransaction();
+		Integer id = dao.save(emp);
+		dao.commitTransaction();
+		return id;		
+	}
+	
+	public Employee findById(Integer empId) {
+		System.out.println("EmployeeService" + " " + "findById");
+		dao.beginTransaction();
+		Employee finded = dao.findById(empId);
+		dao.commitTransaction();
+		return finded;		
+	}
+
+	public List<Employee> getSubs(Integer idmanager) {
+		System.out.println("EmployeeService" + " " + "getSubs");
+		dao.beginTransaction();
+		List<Employee> list = dao.getSubs(idmanager);
+		dao.commitTransaction();
+		return list;
+	}
+	
 }

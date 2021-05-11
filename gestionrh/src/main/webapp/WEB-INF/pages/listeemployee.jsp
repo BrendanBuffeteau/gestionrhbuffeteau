@@ -56,7 +56,7 @@
 	</div>
 
 	<div>
-		<form action="savecustomer">
+		<form action="getaddemployee" method="get">
 			<div class="form-group">
 				<br> <input type="submit" name="submit"
 					class="btn btn-secondary btn-lg"

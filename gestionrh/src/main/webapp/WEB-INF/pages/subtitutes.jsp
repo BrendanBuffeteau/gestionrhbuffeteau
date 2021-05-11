@@ -12,7 +12,7 @@
 	<jsp:include page="navbar.jsp"></jsp:include>
 
 	<div class="container">
-		<h1 class="titre">Parameters</h1>
+		<h1 class="titre">Liste Subtitutes</h1>
 		<table id="employesTable" class="table table-striped"
 			style="width: 100%">
 			<thead>
@@ -26,8 +26,8 @@
 					<th><spring:message code="edit.delete" /></th>
 				</tr>
 			</thead>
-			<c:if test="${not empty employeesparam}">
-				<c:forEach items="${employeesparam}" var="employee">
+			<c:if test="${not empty listesubs}">
+				<c:forEach items="${listesubs}" var="employee">
 					<tr id="tr-id-1" class="tr-class-1" data-title="bootstrap table"
 						data-object='{"key": "value"}'>
 						<td>${employee.firstName} ${employee.lastName}</td>
@@ -37,6 +37,7 @@
 						<td>${employee.manager.firstName}
 							${employee.manager.lastName}</td>
 						<td data-value=>
+
 							<form action="listecustomer" method="post">
 								<input type="hidden" name="custid" value="customer.custId">
 								<button name="update" class="btn btn-primary" type="submit"
