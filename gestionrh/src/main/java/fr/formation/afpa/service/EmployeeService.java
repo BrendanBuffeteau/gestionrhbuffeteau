@@ -23,59 +23,76 @@ public class EmployeeService {
 
 	public List<Employee> getAll(){
 		System.out.println("EmployeeService" + " " + "getAll");
-		dao.beginTransaction();
+		//dao.beginTransaction();
 		List<Employee> list = dao.findAll();
-		dao.commitTransaction();
+		//dao.commitTransaction();
 		return list;
 		
 	}
 	
 	public List<Employee> getManagers(){
 		System.out.println("EmployeeService" + " " + "getManagers");
-		dao.beginTransaction();
+		//dao.beginTransaction();
 		List<Employee> list = dao.getManagers();
-		dao.commitTransaction();
+		//dao.commitTransaction();
 		return list;
 		
 	}
 	
 	public List<Employee> getParameters(){
 		System.out.println("EmployeeService" + " " + "getParameters");
-		dao.beginTransaction();
+		//dao.beginTransaction();
 		List<Employee> list = dao.getParameters();
-		dao.commitTransaction();
+		//dao.commitTransaction();
 		return list;
 	}
 	
+	
 	public Integer save(Employee emp) {
 		System.out.println("EmployeeService" + " " + "save");
-		dao.beginTransaction();
+		//dao.beginTransaction();
 		Integer id = dao.save(emp);
-		dao.commitTransaction();
+		//dao.commitTransaction();
 		return id;		
 	}
 	
 	public Employee findById(Integer empId) {
-		System.out.println("EmployeeService" + " " + "findById");
-		dao.beginTransaction();
+		System.out.println("EmployeeService" + " " + "findById "+empId);
+		//dao.beginTransaction();
 		Employee finded = dao.findById(empId);
-		dao.commitTransaction();
+		//dao.commitTransaction();
 		return finded;		
+	}
+	
+	public void deleteById(Integer empId) {
+		System.out.println("EmployeeService" + " " + "deleteById");
+		//dao.beginTransaction();
+		dao.deleteById(empId);
+		//dao.commitTransaction();
+			
+	}
+	
+	public void delete(Employee e) {
+		System.out.println("EmployeeService" + " " + "delete");
+		//dao.beginTransaction();
+		dao.delete(e);
+		//dao.commitTransaction();
+			
 	}
 
 	public List<Employee> getSubs(Integer idmanager) {
 		System.out.println("EmployeeService" + " " + "getSubs");
-		dao.beginTransaction();
+		//dao.beginTransaction();
 		List<Employee> list = dao.getSubs(idmanager);
-		dao.commitTransaction();
+		//dao.commitTransaction();
 		return list;
 	}
 
 	public void update(Employee e) {
 		System.out.println("EmployeeService" + " " + "update");
-		dao.beginTransaction();
+		//dao.beginTransaction();
 		dao.update(e);
-		dao.commitTransaction();
+		//dao.commitTransaction();
 		
 	}
 	

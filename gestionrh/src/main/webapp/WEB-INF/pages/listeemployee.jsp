@@ -12,7 +12,7 @@
 	<jsp:include page="navbar.jsp"></jsp:include>
 
 	<div class="container">
-		<h1 class="titre">Liste Employee</h1>
+		<h1 class="titre"><spring:message code="navbar.employeelist" /></h1>
 		<table id="employesTable" class="table table-striped"
 			style="width: 100%">
 			<thead>
@@ -20,7 +20,7 @@
 					<th><spring:message code="emp.firstname" /><span> </span>
 					<spring:message code="emp.lastname" /></th>
 					<th><spring:message code="emp.startdate" /></th>
-					<th><spring:message code="emp.enddate" /></th>
+					<th><spring:message code="emp.dept" /></th>
 					<th><spring:message code="emp.title" /></th>
 					<th><spring:message code="emp.superior" /></th>
 					<th><spring:message code="edit.delete" /></th>
@@ -32,21 +32,21 @@
 						data-object='{"key": "value"}'>
 						<td>${employee.firstName} ${employee.lastName}</td>
 						<td>${employee.startDate}</td>
-						<td>${employee.endDate}</td>
+						<td>${employee.department.name}</td>
 						<td>${employee.title}</td>
 						<td>${employee.manager.firstName}
 							${employee.manager.lastName}</td>
 						<td data-value=>
 
-							<form action="listecustomer" method="post">
-								<input type="hidden" name="custid" value="customer.custId">
-								<button name="update" class="btn btn-primary" type="submit"
-									value="update">Edition</button>
-								<button
-									onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ? ID : ${employee.empId}')"
-									name="delete" class="btn btn-danger" type="submit"
-									value="delete">Suppression</button>
-							</form>
+							<form:form action="deleteemployee" method="post">
+									<input type="hidden" name="custid" value="customer.custId">
+									<button name="update" class="btn btn-primary" type="submit"
+										value="update"><spring:message	code="edit" /></button>
+									<button
+										onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ? ID : ${employeedto.empId}')"
+										name="delete" class="btn btn-danger" type="submit"
+										value="delete"><spring:message	code="delete" /></button>
+								</form:form>
 						</td>
 					</tr>
 

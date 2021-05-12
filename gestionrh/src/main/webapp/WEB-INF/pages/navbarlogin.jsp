@@ -25,19 +25,17 @@
 					</a> <a class="nav-link" href="${pageContext.request.contextPath}/who">
 						<spring:message code="navbar.who" />
 					</a>
-
-
 				</div>
 			</div>
 		</div>
 		<div class="d-flex flex-row-reverse bd-highlight">
 		 <a class="nav-link"
-				href="${pageContext.request.contextPath}/listeemployee?lang=en">
+				href="${pageContext.request.contextPath}/loginlogout?lang=en">
 				<img
 				src="${pageContext.request.contextPath}/styles/icon/angleterre.png"
 				alt="English" />
 			</a> <a class="nav-link"
-				href="${pageContext.request.contextPath}/listeemployee?lang=fr">
+				href="${pageContext.request.contextPath}/loginlogout?lang=fr">
 				<img src="${pageContext.request.contextPath}/styles/icon/france.png"
 				alt="Français" />
 			</a>

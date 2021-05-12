@@ -13,49 +13,59 @@
 
 	<div class="container">
 		<h1 class="titre">Parameters</h1>
-		<table id="employesTable" class="table table-striped"
-			style="width: 100%">
-			<thead>
-				<tr>
-					<th><spring:message code="emp.firstname" /><span> </span>
-					<spring:message code="emp.lastname" /></th>
-					<th><spring:message code="emp.startdate" /></th>
-					<th><spring:message code="emp.enddate" /></th>
-					<th><spring:message code="emp.title" /></th>
-					<th><spring:message code="emp.superior" /></th>
-					<th><spring:message code="edit.delete" /></th>
-				</tr>
-			</thead>
-			<c:if test="${not empty employeesparam}">
-				<c:forEach items="${employeesparam}" var="employee">
-					<tr id="tr-id-1" class="tr-class-1" data-title="bootstrap table"
-						data-object='{"key": "value"}'>
-						<td>${employee.firstName} ${employee.lastName}</td>
-						<td>${employee.startDate}</td>
-						<td>${employee.endDate}</td>
-						<td>${employee.title}</td>
-						<td>${employee.manager.firstName}
-							${employee.manager.lastName}</td>
-						<td data-value=>
-
-							<form action="listecustomer" method="post">
-								<input type="hidden" name="custid" value="customer.custId">
-								<button name="update" class="btn btn-primary" type="submit"
-									value="update">Edition</button>
-								<button
-									onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ? ID : ${employee.empId}')"
-									name="delete" class="btn btn-danger" type="submit"
-									value="delete">Suppression</button>
-							</form>
-						</td>
+		<form:form method="post" action="saveparam"
+			modelAttribute="employeeswochiefdto">
+			<table id="employesTable" class="table table-striped"
+				style="width: 100%">
+				<thead>
+					<tr>
+						<th>No. and id</th>
+						<th><spring:message code="emp.firstname" /><span> </span> <spring:message
+								code="emp.lastname" /></th>
+						<th><spring:message code="emp.startdate" /></th>
+						<th><spring:message code="emp.title" /></th>
+						<th><spring:message code="emp.superior" /></th>
+						<th><spring:message code="edit.delete" /></th>
 					</tr>
-
-				</c:forEach>
-			</c:if>
-		</table>
-	</div>
-
-	<div>
+				</thead>
+				<c:if test="${not empty employeeswochiefdto.listempwochief}">
+					<c:forEach items="${employeeswochiefdto.listempwochief}" var="employeedto"
+						varStatus="status">
+						<tr id="tr-id-1" class="tr-class-1" data-title="bootstrap table"
+							data-object='{"key": "value"}'>
+							<td>${status.count} <form:input disabled="true" path="listempwochief[${status.index}].empId" value="${empId}"/></td>
+							<td>${employeedto.firstName} ${employeedto.lastName}</td>
+							<td>${employeedto.startDate}</td>
+							<td>${employeedto.title}</td>
+							<td>
+							
+							<form:select  path="listempwochief[${status.index}].manager" class="form-select marginBottom10" multiple=""
+								aria-label="Default select example">
+									<c:if test="${not empty managers}">
+										<c:forEach items="${managers}" var="manager">
+											<form:option var="managerid" value="${manager.empId}">${manager.firstName}
+												${manager.lastName}</form:option>
+										</c:forEach>
+									</c:if>
+							</form:select>
+</td>
+							<td data-value=>
+								<form action="listecustomer" method="post">
+									<input type="hidden" name="custid" value="customer.custId">
+									<button name="update" class="btn btn-primary" type="submit"
+										value="update">Edition</button>
+									<button
+										onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ? ID : ${employee.empId}')"
+										name="delete" class="btn btn-danger" type="submit"
+										value="delete">Suppression</button>
+								</form>
+							</td>
+						</tr>
+					</c:forEach>
+				</c:if>
+			</table>
+			<input type="submit" value="Save" />
+		</form:form>
 		<form action="getaddemployee" method="get">
 			<div class="form-group">
 				<br> <input type="submit" name="submit"

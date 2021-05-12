@@ -11,7 +11,7 @@
 		<jsp:include page="navbar.jsp"></jsp:include>
 
 	<div class="container">
-		Contact Form
+		<h3><spring:message code="label.contact" /></h3>
 	</div>
 	<footer class="footer">
 		<jsp:include page="footer.jsp"></jsp:include>

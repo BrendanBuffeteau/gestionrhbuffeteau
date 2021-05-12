@@ -11,7 +11,7 @@
 		<jsp:include page="navbar.jsp"></jsp:include>
 
 	<div class="container">
-		<h3>Accueil</h3>
+		<h3><spring:message code="label.title" /></h3>
 	</div>
 	<footer class="footer">
 		<jsp:include page="footer.jsp"></jsp:include>

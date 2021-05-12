@@ -144,9 +144,7 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [empId=" + empId + ", firstName=" + firstName + ", lastName=" + lastName + ", startDate="
-				+ startDate + ", endDate=" + endDate + ", title=" + title + ", department=" + department + ", manager="
-				+ manager + "]";
+		return "Employee [empId=" + empId + ", firstName=" + firstName + ", lastName=" + lastName +"]";
 	}
 
 

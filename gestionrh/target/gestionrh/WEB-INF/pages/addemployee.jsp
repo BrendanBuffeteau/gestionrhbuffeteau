@@ -21,7 +21,7 @@
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">Add Employee</h4>
-							<form:form action="ajoutEmploye" method="POST"
+							<form:form action="addemployee" method="POST"
 								modelAttribute="employee">
 								<div class="form-floating marginBottom10">
 									<form:input path="firstName" type="text" class="form-control"
@@ -35,27 +35,22 @@
 								</div>
 								<div class="form-floating marginBottom10">
 									<form:input path="startDate" type="date" class="form-control"
-										id="floatingPassword" />
+								id="floatingPassword" /> 
 									<label for="floatingPassword">startDate</label>
 								</div>
-								<div class="form-floating marginBottom10">
-									<form:input path="endDate" type="date" class="form-control"
-										id="floatingPassword" />
-									<label for="floatingPassword">endDate</label>
-								</div>
+
 								<div class="form-floating marginBottom10">
 									<form:input path="title" type="text" class="form-control"
 										id="floatingPassword" />
 									<label for="floatingPassword">title</label>
 								</div>
-								<form:select path="manager" class="form-select"
+								<form:select path="manager" class="form-select marginBottom10"
 									aria-label="Default select example">
-									<form:option value="null" label="Aucun manager"></form:option>
+									<form:option value="" label="Aucun manager"></form:option>
 									<c:forEach items="${employees}" var="employee">
 										<form:option var="idmanager" value="${employee.empId}">${employee.firstName}
 											${employee.lastName}</form:option>
 									</c:forEach>
-									<form:hidden path="manager" value="${idmanager}"></form:hidden>
 								</form:select>
 
 								<div>

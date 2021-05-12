@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fr.formation.afpa.domain.Department;
 import fr.formation.afpa.domain.Employee;
-import fr.formation.afpa.domain.EmployeesParam;
+import fr.formation.afpa.domain.EmployeesWoChief;
+import fr.formation.afpa.dto.EmployeeDto;
+import fr.formation.afpa.dto.EmployeesWoChiefDto;
+import fr.formation.afpa.service.DepartmentService;
 import fr.formation.afpa.service.EmployeeService;
 
 // https://www.javatpoint.com/spring-mvc-validation#:~:text=The%20Spring%20MVC%20Validation%20is,well%20as%20client%2Dside%20applications.
@@ -28,22 +32,25 @@ import fr.formation.afpa.service.EmployeeService;
 public class ListController {
 
 	EmployeeService empservice;
+	DepartmentService deptservice;
 	private static final Log log = LogFactory.getLog(ListController.class);
 	
-	@InitBinder
-	protected void initBinder(WebDataBinder binder) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
-	}
+	   @InitBinder
+	    public void initBinder(WebDataBinder binder) {
+	        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	        dateFormat.setLenient(false);
+	        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	    }
 
 	public ListController() {
 		System.out.println("LogController default");
 	}
 
 	@Autowired
-	public ListController(EmployeeService service) {
+	public ListController(EmployeeService service, DepartmentService deptservice) {
 		System.out.println("ListController service");
 		this.empservice = service;
+		this.deptservice= deptservice;
 	}
 
 	@GetMapping(path = "/listeemployee")
@@ -52,33 +59,91 @@ public class ListController {
 		model.addAttribute("employees", listemp);
 		return "listeemployee";
 	}
+	
+	@GetMapping(path = "/contact")
+	public String getContact(Model model) {
+		return "contact";
+	}
 
+//
+//	@RequestMapping(value = "/parameters", method = RequestMethod.GET)
+//	public String getParameters(Model model) {
+//		List<Employee> listempwochief = empservice.getParameters();
+//		EmployeesWoChief employeeswochief = new EmployeesWoChief(listempwochief);
+//		model.addAttribute("employeeswochief", employeeswochief);
+//		List<Employee> listemanager = empservice.getManagers();
+//		model.addAttribute("managers", listemanager);
+//		for (Employee e : listempwochief) {
+//			System.out.println(e);
+//		}
+//		return "parameters";
+//	}
+//	
 
 	@RequestMapping(value = "/parameters", method = RequestMethod.GET)
 	public String getParameters(Model model) {
-		List<Employee> listeparam = empservice.getParameters();
-		EmployeesParam employeesParam = new EmployeesParam(listeparam);
-		model.addAttribute("employeesParam", employeesParam);
+		List<Employee> listempwochief = empservice.getParameters();
+		EmployeesWoChiefDto employeeswochiefdto = new EmployeesWoChiefDto();
+		employeeswochiefdto.setListempwochiefNotDto(listempwochief);
+		model.addAttribute("employeeswochiefdto", employeeswochiefdto);
 		List<Employee> listemanager = empservice.getManagers();
 		model.addAttribute("managers", listemanager);
-		for (Employee e : listeparam) {
-			System.out.println(e);
+		for (EmployeeDto e : employeeswochiefdto.getListempwochief()) {
+			System.out.println(e.toString());
+		}
+		if (employeeswochiefdto.getListempwochief().isEmpty()) {
+			for (int i=0;i<100;i++) System.out.println("LISTE VIDE");
 		}
 		return "parameters";
 	}
 	
 	@RequestMapping(value = "/saveparam", method = RequestMethod.POST)
-	public String saveSubs(@ModelAttribute("employeesParam") EmployeesParam employeesparam) {
-		System.out.println(employeesparam);
-		System.out.println(employeesparam.getEmployeesparam());
-		List<Employee> listesubsupdated = employeesparam.getEmployeesparam();
+	public String saveSubs(Model model,@ModelAttribute("employeeswochief") EmployeesWoChiefDto employeeswochiefdto) {
+		for (int i=0;i<10;i++)System.out.println("saveSubs");
+		List<EmployeeDto> listempwochiefupdated = employeeswochiefdto.getListempwochief();
+		for (int i=0;i<10;i++)System.out.println("saveSubsPRINT");
+		for (EmployeeDto e : listempwochiefupdated) {
+			System.out.println(e.toString());
+			System.out.println(e.toString());
+			System.out.println(e.toString());
+		}
 		
-		if(null != listesubsupdated && listesubsupdated.size() > 0) {
-			for (Employee e : listesubsupdated) {
-				empservice.update(e);
+		List<Employee> listemanager = empservice.getManagers();
+		List<Employee> listempwochief = empservice.getParameters();
+		
+		for (int i=0;i<10;i++)System.out.println("saveSubsPRINT END");
+		
+		if(null != listempwochiefupdated && listempwochiefupdated.size() > 0) {
+			for (EmployeeDto e : listempwochiefupdated) {
+				Employee emp = null;
+				for (int i=0;i<10;i++) System.out.println("NEW EMPLOYEE "+e.getEmpId());
+				
+				for (Employee ed : listempwochief) {
+					if (ed.getEmpId().equals(e.getEmpId())){
+						for (int i=0;i<10;i++)System.out.println("Same Id Found");
+						emp=ed;
+						for (int i=0;i<10;i++)System.out.println(emp.toString());
+					}
+				}
+				for (int i=0;i<100;i++) System.out.println(emp==null);
+				
+				if (e.getManager()!=null) {
+					Employee addmanager=null;
+					for (Employee man : listemanager) {
+						if (man.getEmpId().equals(e.getManager())) {
+							addmanager=man;
+						}
+					}
+					emp.setManager(addmanager);
+				}
+				if (emp!=null)	for (int i=0;i<100;i++) System.out.println(emp.toString());
+				empservice.update(emp);
 			}
 		}
+		List<Employee> listemp = empservice.getAll();
+		model.addAttribute("employees", listemp);
 		return "listeemployee";
+	
 	}
 	
 	@GetMapping(path = "/listemanager")
@@ -90,7 +155,9 @@ public class ListController {
 
 	@RequestMapping(value = "/listesub", method = RequestMethod.GET, params = { "idmanager" })
 	public String getListeSub(Model model, @RequestParam(name = "idmanager", required = true) String idmanager) {
+		for (int i=0;i<50;i++)System.out.println(idmanager);
 		Integer intmanager = Integer.parseInt(idmanager);
+		for (int i=0;i<50;i++)System.out.println(intmanager);
 		List<Employee> listesub = empservice.getSubs(intmanager);
 		model.addAttribute("listesubs", listesub);
 		for (Employee e : listesub) {
@@ -99,31 +166,97 @@ public class ListController {
 		return "subtitutes";
 	}
 
-	
-
-
 	@GetMapping(path = "/getaddemployee")
 	public String getAddEmployee(Model model) {
-		model.addAttribute("employee", new Employee());
+		model.addAttribute("employee", new EmployeeDto());
 		List<Employee> listemanager = empservice.getManagers();
 		model.addAttribute("employees", listemanager);
+		
+		List<Department> listedepartment = deptservice.getAll();
+		model.addAttribute("departments",listedepartment);
 		return "addemployee";
 	}
 
 	@RequestMapping(path = "/addemployee", method = RequestMethod.POST)
-	public String getSaveEmploye(@ModelAttribute Employee employee, @RequestParam Integer manager, @RequestParam Date startDate) {
-		System.out.println("manager " + manager);
-		System.out.println("startDate " +startDate);
-		employee.setStartDate(new Date());
-
+	public String getSaveEmploye(Model model,@ModelAttribute EmployeeDto employee, @RequestParam Integer manager, Date startDate, Integer department) {
+		
+		Employee emp = new Employee();
+		
+		emp.setFirstName(employee.getFirstName());
+		emp.setLastName(employee.getLastName());
+		emp.setTitle(employee.getTitle());
+		
+		if (startDate != null) {
+		emp.setStartDate(startDate);
+		}
+		
 		if (manager != null) {
 			Employee employe = empservice.findById(manager);
-			employee.setManager(employe);
+			emp.setManager(employe);
 		}
-		System.out.println(employee);
-		empservice.save(employee);
+		
+		if (department != null) {
+			Department dept = deptservice.findById(department);
+			emp.setDepartment(dept);
+		}
+
+
+		empservice.save(emp);
+		
+		List<Employee> listemp = empservice.getAll();
+		model.addAttribute("employees", listemp);
 		return "listeemployee";
 	}
+	
+	@RequestMapping(path = "/deleteemployee", method = RequestMethod.POST )
+	public String getDeleteEmploye(Model model, @RequestParam Integer empId) {
+		for (int i=0;i<50;i++)System.out.println(empId);
+		if (empId!=null) {
+		Employee emp = empservice.findById(empId);
+		for (int i=0;i<20;i++)System.out.println("FINDED "+emp.toString());
+		}
+		
+		
+		List<Employee> listemp = empservice.getAll();
+		model.addAttribute("employees", listemp);
+		return "listeemployee";
+	}
+	
+//	@RequestMapping(value = "/saveparam", method = RequestMethod.POST)
+//	public String saveSubs(Model model,@ModelAttribute("employeeswochief") EmployeesWoChiefDto employeeswochiefdto) {
+//		for (int i=0;i<25;i++)System.out.println("saveSubs");
+//		List<EmployeeDto> listempwochiefupdated = employeeswochiefdto.getListempwochief();
+//		for (int i=0;i<25;i++)System.out.println("saveSubsPRINT");
+//		for (EmployeeDto e : listempwochiefupdated) {
+//			System.out.println(e.toString());
+//			System.out.println(e.toString());
+//			System.out.println(e.toString());
+//		}
+//		
+//		List<Employee> listemanager = empservice.getManagers();
+//		List<Employee> listempwochief = empservice.getParameters();
+//		
+//		for (int i=0;i<25;i++)System.out.println("saveSubsPRINT END");
+//		
+//		if(null != listempwochiefupdated && listempwochiefupdated.size() > 0) {
+//			for (EmployeeDto e : listempwochiefupdated) {
+//				
+//				for (int i=0;i<100;i++) System.out.println("NEW EMPLOYEE "+e.getEmpId());
+//				Employee emp = empservice.findById(e.getEmpId());
+//				for (int i=0;i<100;i++) System.out.println(emp.toString());
+//				
+//				if (e.getManager()!=null) {
+//					Employee addmanager = empservice.findById(e.getManager());
+//					emp.setManager(addmanager);
+//				}
+//				empservice.update(emp);
+//			}
+//		}
+//		List<Employee> listemp = empservice.getAll();
+//		model.addAttribute("employees", listemp);
+//		return "listeemployee";
+//	
+//	}
 
 
 }

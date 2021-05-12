@@ -20,42 +20,55 @@
 				<div class="card-wrapper">
 					<div class="card fat">
 						<div class="card-body">
-							<h4 class="card-title">Add Employee</h4>
+							<h4 class="card-title"><spring:message	code="add.emp" /></h4>
 							<form:form action="addemployee" method="POST"
 								modelAttribute="employee">
 								<div class="form-floating marginBottom10">
 									<form:input path="firstName" type="text" class="form-control"
 										id="floatingInput" />
-									<label for="floatingInput">firstName</label>
+									<label for="floatingInput"><spring:message	code="emp.firstname" /></label>
 								</div>
 								<div class="form-floating marginBottom10">
 									<form:input path="lastName" type="text" class="form-control"
 										id="floatingPassword" />
-									<label for="floatingPassword">lastName</label>
+									<label for="floatingPassword"><spring:message	code="emp.lastname" /></label>
 								</div>
 								<div class="form-floating marginBottom10">
 									<form:input path="startDate" type="date" class="form-control"
-								id="floatingPassword" />
-									<label for="floatingPassword">startDate</label>
+								id="floatingPassword" /> 
+									<label for="floatingPassword"><spring:message	code="emp.startdate" /></label>
 								</div>
-
-								<div class="form-floating marginBottom10">
-									<form:input path="title" type="text" class="form-control"
-										id="floatingPassword" />
-									<label for="floatingPassword">title</label>
-								</div>
+								<spring:message	code="emp.title" />
+									<form:select path="title" class="form-select marginBottom10"
+									aria-label="Default select example">
+										<form:option value="President">President</form:option>
+										<form:option value="Vice President">Vice President</form:option>
+										<form:option value="Treasurer">Treasurer</form:option>
+										<form:option value="Operations Manager">Operations Manager</form:option>
+											<form:option value="Loan Manager">Loan Manager</form:option>
+										<form:option value="Head Teller">Head Teller</form:option>
+										<form:option value="Teller">Teller</form:option>
+								</form:select>
+								<spring:message	code="emp.dept" />
+								<form:select path="department" class="form-select marginBottom10"
+									aria-label="Default select example">
+									<c:forEach items="${departments}" var="department">
+										<form:option  value="${department.deptId}">${department.name}
+											${employee.lastName}</form:option>
+									</c:forEach>
+								</form:select>
+								<spring:message	code="emp.superior" />
 								<form:select path="manager" class="form-select marginBottom10"
 									aria-label="Default select example">
-									<form:option value="" label="Aucun manager"></form:option>
+								<form:option value="">-- <spring:message	code="managerchoice" /> --</form:option>
 									<c:forEach items="${employees}" var="employee">
 										<form:option var="idmanager" value="${employee.empId}">${employee.firstName}
 											${employee.lastName}</form:option>
 									</c:forEach>
-									<form:hidden path="manager" value="${idmanager}"></form:hidden>
 								</form:select>
 
 								<div>
-									<button class="w-100 btn btn-lg btn-primary" type="submit">Enregistrer</button>
+									<button class="w-100 btn btn-lg btn-primary" type="submit"><spring:message	code="save" /></button>
 								</div>
 							</form:form>
 						</div>

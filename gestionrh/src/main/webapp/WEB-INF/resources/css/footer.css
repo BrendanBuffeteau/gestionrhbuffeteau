@@ -10,5 +10,5 @@ footer{
     margin-right: 0%;
     width:100%;
     bottom: 0;
-    position:fixed;
+    position:absolute;
 }

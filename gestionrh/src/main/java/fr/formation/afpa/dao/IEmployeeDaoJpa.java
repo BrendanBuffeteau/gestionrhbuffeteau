@@ -6,9 +6,9 @@ import fr.formation.afpa.domain.Employee;
 
 public interface IEmployeeDaoJpa {
 
-	void beginTransaction();
-
-	void commitTransaction();
+//	void beginTransaction();
+//
+//	void commitTransaction();
 
 	// read
 	Employee findById(Integer id);

@@ -34,6 +34,12 @@ public class LogController {
 		model.addAttribute("compte", new Compte());
 		return "login";
 	}
+	
+	@GetMapping(path = "/loginlogout")
+	public String getLogout(Model model) {
+		model.addAttribute("compte", new Compte());
+		return "login";
+	}
 
 	@PostMapping(path = "/loginaction")
 	public String getLoginLogout(@ModelAttribute Compte compte, Model model, BindingResult result) {
