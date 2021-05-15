@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fr.formation.afpa.domain.Compte;
 import fr.formation.afpa.domain.Department;
 import fr.formation.afpa.domain.Employee;
-import fr.formation.afpa.domain.EmployeesWoChief;
 import fr.formation.afpa.dto.EmployeeDto;
 import fr.formation.afpa.dto.EmployeesWoChiefDto;
 import fr.formation.afpa.service.DepartmentService;
@@ -33,6 +33,7 @@ public class ListController {
 
 	EmployeeService empservice;
 	DepartmentService deptservice;
+	@SuppressWarnings("unused")
 	private static final Log log = LogFactory.getLog(ListController.class);
 	
 	   @InitBinder
@@ -64,21 +65,18 @@ public class ListController {
 	public String getContact(Model model) {
 		return "contact";
 	}
+	
+	@GetMapping(path = "/accueil")
+	public String getAcc(Model model) {
+		return "accueil";
+	}
+	
+	@GetMapping(path = "/who")
+	public String getWho(Model model) {
+		model.addAttribute("compte", new Compte());
+		return "who";
+	}
 
-//
-//	@RequestMapping(value = "/parameters", method = RequestMethod.GET)
-//	public String getParameters(Model model) {
-//		List<Employee> listempwochief = empservice.getParameters();
-//		EmployeesWoChief employeeswochief = new EmployeesWoChief(listempwochief);
-//		model.addAttribute("employeeswochief", employeeswochief);
-//		List<Employee> listemanager = empservice.getManagers();
-//		model.addAttribute("managers", listemanager);
-//		for (Employee e : listempwochief) {
-//			System.out.println(e);
-//		}
-//		return "parameters";
-//	}
-//	
 
 	@RequestMapping(value = "/parameters", method = RequestMethod.GET)
 	public String getParameters(Model model) {
@@ -90,9 +88,6 @@ public class ListController {
 		model.addAttribute("managers", listemanager);
 		for (EmployeeDto e : employeeswochiefdto.getListempwochief()) {
 			System.out.println(e.toString());
-		}
-		if (employeeswochiefdto.getListempwochief().isEmpty()) {
-			for (int i=0;i<100;i++) System.out.println("LISTE VIDE");
 		}
 		return "parameters";
 	}
@@ -208,55 +203,5 @@ public class ListController {
 		return "listeemployee";
 	}
 	
-	@RequestMapping(path = "/deleteemployee", method = RequestMethod.POST )
-	public String getDeleteEmploye(Model model, @RequestParam Integer empId) {
-		for (int i=0;i<50;i++)System.out.println(empId);
-		if (empId!=null) {
-		Employee emp = empservice.findById(empId);
-		for (int i=0;i<20;i++)System.out.println("FINDED "+emp.toString());
-		}
-		
-		
-		List<Employee> listemp = empservice.getAll();
-		model.addAttribute("employees", listemp);
-		return "listeemployee";
-	}
-	
-//	@RequestMapping(value = "/saveparam", method = RequestMethod.POST)
-//	public String saveSubs(Model model,@ModelAttribute("employeeswochief") EmployeesWoChiefDto employeeswochiefdto) {
-//		for (int i=0;i<25;i++)System.out.println("saveSubs");
-//		List<EmployeeDto> listempwochiefupdated = employeeswochiefdto.getListempwochief();
-//		for (int i=0;i<25;i++)System.out.println("saveSubsPRINT");
-//		for (EmployeeDto e : listempwochiefupdated) {
-//			System.out.println(e.toString());
-//			System.out.println(e.toString());
-//			System.out.println(e.toString());
-//		}
-//		
-//		List<Employee> listemanager = empservice.getManagers();
-//		List<Employee> listempwochief = empservice.getParameters();
-//		
-//		for (int i=0;i<25;i++)System.out.println("saveSubsPRINT END");
-//		
-//		if(null != listempwochiefupdated && listempwochiefupdated.size() > 0) {
-//			for (EmployeeDto e : listempwochiefupdated) {
-//				
-//				for (int i=0;i<100;i++) System.out.println("NEW EMPLOYEE "+e.getEmpId());
-//				Employee emp = empservice.findById(e.getEmpId());
-//				for (int i=0;i<100;i++) System.out.println(emp.toString());
-//				
-//				if (e.getManager()!=null) {
-//					Employee addmanager = empservice.findById(e.getManager());
-//					emp.setManager(addmanager);
-//				}
-//				empservice.update(emp);
-//			}
-//		}
-//		List<Employee> listemp = empservice.getAll();
-//		model.addAttribute("employees", listemp);
-//		return "listeemployee";
-//	
-//	}
-
 
 }

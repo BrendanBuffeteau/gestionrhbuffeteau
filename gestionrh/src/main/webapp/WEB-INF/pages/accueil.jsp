@@ -12,6 +12,7 @@
 
 	<div class="container">
 		<h3><spring:message code="label.title" /></h3>
+		${compte.login }
 	</div>
 	<footer class="footer">
 		<jsp:include page="footer.jsp"></jsp:include>

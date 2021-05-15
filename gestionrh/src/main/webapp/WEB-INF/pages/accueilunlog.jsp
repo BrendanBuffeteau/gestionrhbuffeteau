@@ -8,10 +8,13 @@
 <jsp:include page="head.jsp"></jsp:include>
 <body>
 
-		<jsp:include page="navbar.jsp"></jsp:include>
-<div class="container">
-		<h1>Nous sommes GestionRH</h1>
+		<jsp:include page="navbarlogin.jsp"></jsp:include>
+
+	<div class="container">
+		<h3><spring:message code="label.title" /></h3>
 	</div>
+	<footer class="footer">
 		<jsp:include page="footer.jsp"></jsp:include>
+	</footer>
 </body>
 </html>

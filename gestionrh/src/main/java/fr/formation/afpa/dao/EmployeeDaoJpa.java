@@ -3,8 +3,6 @@ package fr.formation.afpa.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
@@ -13,38 +11,19 @@ import fr.formation.afpa.domain.Employee;
 
 @Repository
 public class EmployeeDaoJpa implements IEmployeeDaoJpa {
-	//private EntityManagerFactory emf;
-	
+
 	@PersistenceContext
 	private EntityManager em;
 	
 	public EmployeeDaoJpa() {
-		//emf = Persistence.createEntityManagerFactory("unitBD");
-		//em=emf.createEntityManager();
 	}
-	
-//	public void beginTransaction() {
-//		em = emf.createEntityManager();
-//		em.getTransaction().begin(); //charge la transaction
-//	}
-//	
-//	public void commitTransaction() {
-//		em.getTransaction().commit();//fin de la transaction soit begin soit rollback
-//	}
-//	public void rollBackTransaction() {
-//		em.getTransaction().rollback();//fin de la transaction soit begin soit rollback
-//	}	
 	
 	public Employee findById(Integer id) {
 		System.out.println("EMPLOYEE DAO JPA FIND BY ID");
 		Employee emp = em.find(Employee.class, id);
 		if (emp!=null) System.out.println("EMPLOYEE DAO JPA "+emp.toString());
-		if (emp!=null) System.out.println("EMPLOYEE DAO JPA "+emp.toString());
-		if (emp!=null) System.out.println("EMPLOYEE DAO JPA "+emp.toString());
 		if (emp==null) System.out.println("EMPLOYEE DAO JPA EMP NULL");
-		if (emp==null) System.out.println("EMPLOYEE DAO JPA EMP NULL");
-		if (emp==null) System.out.println("EMPLOYEE DAO JPA EMP NULL");
-		
+
 		return emp;
 	}
 
@@ -67,15 +46,11 @@ public class EmployeeDaoJpa implements IEmployeeDaoJpa {
 	}
 
 	public void deleteById(Integer id) {
-	
-		for (int i=0;i<20;i++)System.out.println("DELETE BY ID DAO "+id);
-		Employee emp = findById(id);
-
-		for (int i=0;i<20;i++)System.out.println(emp.toString());
-		//delete(emp);
-		
+		Employee emp = em.find(Employee.class, id);
+		em.remove(emp);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Employee> getManagers() {
 		
@@ -85,17 +60,19 @@ public class EmployeeDaoJpa implements IEmployeeDaoJpa {
 		 List<Integer> listmanagerid = em.createQuery(hqlid).getResultList();
 		
 		 String hql = "from Employee where emp_id in(:listmanagerid)";
-		 List<Employee> listmanager = em.createQuery(hql).setParameter("listmanagerid", listmanagerid).getResultList();
+		List<Employee> listmanager = em.createQuery(hql).setParameter("listmanagerid", listmanagerid).getResultList();
 		 return listmanager;
 	}
 
 	@Override
 	public List<Employee> getParameters() {
 		String hqlid = "from Employee where manager is null";
-		 List<Employee> listparameters = em.createQuery(hqlid).getResultList();
+		 @SuppressWarnings("unchecked")
+		List<Employee> listparameters = em.createQuery(hqlid).getResultList();
 		return listparameters;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Employee> getSubs(Integer idmanager) {
 		String hqlid = "from Employee where manager.empId = :idmanager";

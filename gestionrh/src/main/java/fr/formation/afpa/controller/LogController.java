@@ -1,6 +1,7 @@
 package fr.formation.afpa.controller;
 
 import javax.persistence.NoResultException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,11 @@ public class LogController {
 		System.out.println("LogController service");
 		this.cptservice = service;
 	}
+	
+	@GetMapping(path = "/accueilunlog")
+	public String getAcc(Model model) {
+		return "accueilunlog";
+	}
 
 	@GetMapping(path = "/")
 	public String getHomeLogin(Model model) {
@@ -36,16 +42,33 @@ public class LogController {
 	}
 	
 	@GetMapping(path = "/loginlogout")
-	public String getLogout(Model model) {
+	public String getLogout(HttpServletRequest request,Model model) {
+		request.getSession().invalidate();
 		model.addAttribute("compte", new Compte());
 		return "login";
 	}
+	
+	@GetMapping(path = "/whounlog")
+	public String getWho(Model model) {
+		model.addAttribute("compte", new Compte());
+		return "whounlog";
+	}
+	
+	@GetMapping(path = "/contactunlog")
+	public String getContactUnlog(Model model) {
+		model.addAttribute("compte", new Compte());
+		return "contactunlog";
+	}
 
 	@PostMapping(path = "/loginaction")
-	public String getLoginLogout(@ModelAttribute Compte compte, Model model, BindingResult result) {
+	public String getLoginLogout(HttpServletRequest request,@ModelAttribute Compte compte, Model model, BindingResult result) {
 		System.out.println(compte);
 		try {
 			if (cptservice.findByLogingAndPassword(compte.getLogin(), compte.getPassword()) != null) {
+			
+				request.getSession();
+				request.setAttribute("compte", compte);
+				model.addAttribute("compte",compte);
 				return "accueil";
 			} else {
 				return "accueil";

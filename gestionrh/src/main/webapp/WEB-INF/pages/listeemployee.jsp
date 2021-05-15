@@ -37,16 +37,17 @@
 						<td>${employee.manager.firstName}
 							${employee.manager.lastName}</td>
 						<td data-value=>
-
-							<form:form action="deleteemployee" method="post">
-									<input type="hidden" name="custid" value="customer.custId">
-									<button name="update" class="btn btn-primary" type="submit"
-										value="update"><spring:message	code="edit" /></button>
-									<button
-										onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ? ID : ${employeedto.empId}')"
-										name="delete" class="btn btn-danger" type="submit"
-										value="delete"><spring:message	code="delete" /></button>
-								</form:form>
+<%-- 						href="${pageContext.request.contextPath}/listesub?idmanager=${employee.empId}"> --%>
+							
+									<a  class="btn btn-primary" type="submit" 
+									href="${pageContext.request.contextPath}/editemployee?empId=${employee.empId}">
+									<spring:message	code="edit" /></a>
+								
+									<a href="${pageContext.request.contextPath}/deleteemployeeliste?empId=${employee.empId}"
+										onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ? : ${employee.firstName} ${employee.lastName}')"
+										 class="btn btn-danger" type="submit"
+										><spring:message	code="delete" /></a>
+					
 						</td>
 					</tr>
 

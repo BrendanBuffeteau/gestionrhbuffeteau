@@ -42,7 +42,7 @@
 									<button name="update" class="btn btn-primary" type="submit"
 										value="update"><spring:message	code="edit" /></button>
 									<button
-										onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ? ID : ${employeedto.empId}')"
+										onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ? : ${employeedto.firstName} ${employeedto.lastName}')"
 										name="delete" class="btn btn-danger" type="submit"
 										value="delete"><spring:message	code="delete" /></button>
 								</form:form>

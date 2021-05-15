@@ -52,7 +52,11 @@ public class ApplicationConfigurerAdapter extends WebMvcConfigurationSupport {
 		return resolver;
 
 	}
-
+	
+	//
+		//	JPA
+	//
+	
 	@Bean(name = "entityManagerFactoryBean")
 public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
     LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();

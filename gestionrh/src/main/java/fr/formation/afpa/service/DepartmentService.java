@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.formation.afpa.dao.IDepartmentDaoJpa;
-import fr.formation.afpa.dao.IEmployeeDaoJpa;
 import fr.formation.afpa.domain.Department;
-import fr.formation.afpa.domain.Employee;
 
 @Service
 @Transactional

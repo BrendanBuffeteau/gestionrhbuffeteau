@@ -8,7 +8,6 @@ import javax.persistence.Persistence;
 import org.springframework.stereotype.Repository;
 
 import fr.formation.afpa.domain.Department;
-import fr.formation.afpa.domain.Employee;
 
 @Repository
 public class DepartmentDaoJpa implements IDepartmentDaoJpa {
