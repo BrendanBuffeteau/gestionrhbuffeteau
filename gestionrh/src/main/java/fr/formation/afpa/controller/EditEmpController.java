@@ -110,6 +110,15 @@ public class EditEmpController {
 	@RequestMapping(value = "/deleteemployeeliste", method = RequestMethod.GET, params = { "empId" })
 	public String getDeleteEmployee(Model model, @RequestParam(name = "empId", required = true) String empId) {
 		Integer empIdint = Integer.parseInt(empId);
+		
+		List<Employee> listesub = empservice.getSubs(empIdint);
+		if (listesub.isEmpty()==false) {
+			for(Employee e : listesub) {
+				e.setManager(null);
+				empservice.update(e);
+			}
+		}
+		
 		for (int i=0;i<50;i++)System.out.println(empIdint);
 		empservice.deleteById(empIdint);
 		
@@ -119,26 +128,4 @@ public class EditEmpController {
 	}
 	
 	
-	@RequestMapping(value = "/deleteemployeeparam", method = RequestMethod.GET, params = { "empId" })
-	public String getDeleteEmployeeParam(Model model, @RequestParam(name = "empId", required = true) String empId) {
-		Integer empIdint = Integer.parseInt(empId);
-		for (int i=0;i<50;i++)System.out.println(empIdint);
-		empservice.deleteById(empIdint);
-		
-		List<Employee> listempwochief = empservice.getParameters();
-		EmployeesWoChiefDto employeeswochiefdto = new EmployeesWoChiefDto();
-		employeeswochiefdto.setListempwochiefNotDto(listempwochief);
-		model.addAttribute("employeeswochiefdto", employeeswochiefdto);
-		List<Employee> listemanager = empservice.getManagers();
-		model.addAttribute("managers", listemanager);
-		for (EmployeeDto e : employeeswochiefdto.getListempwochief()) {
-			System.out.println(e.toString());
-		}
-		if (employeeswochiefdto.getListempwochief().isEmpty()) {
-			for (int i=0;i<100;i++) System.out.println("LISTE VIDE");
-		}
-		return "parameters";
-	}
-
-
 }
