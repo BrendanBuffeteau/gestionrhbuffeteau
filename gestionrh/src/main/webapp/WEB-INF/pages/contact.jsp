@@ -10,7 +10,7 @@
 
 		<jsp:include page="navbar.jsp"></jsp:include>
 
-
+<br><br><br><br>
 	<section class="h-300">
 		<div class="container h-300">
 			<div class="row justify-content-md-center h-100">

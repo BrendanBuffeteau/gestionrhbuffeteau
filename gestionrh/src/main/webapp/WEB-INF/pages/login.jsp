@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <jsp:include page="head.jsp"></jsp:include>
@@ -21,7 +22,8 @@
 						<div class="card-body">
 							<h4 class="card-title">Login</h4>
 						<form:form action="loginaction" method="POST" modelAttribute="compte">				   
-							
+							<div class="error marginBottom10"><c:if test="${loginerror == true}"><spring:message	code="loginerror" /></c:if></div>
+							<br>
 							    <div class="form-floating marginBottom10">
 							      <form:input path="login" type="email" class="form-control" id="floatingInput" placeholder="name@example.com"/>
 							      <label for="floatingInput"><spring:message	code="label.userName" /></label>

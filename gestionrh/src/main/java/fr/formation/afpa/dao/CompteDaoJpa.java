@@ -31,15 +31,23 @@ public class CompteDaoJpa implements ICompteDaoJpa {
 	}	
 
 	public Compte findByLoginAndPassword(String login, String password) {
+		System.out.println(password.isEmpty());
+		if (password.isEmpty()) return null;
 		System.out.println("findByLoginAndPassword "+login+" "+password);
 		String hql = "from Compte where login = :login";
         Compte compte = (Compte) em.createQuery(hql).setParameter("login", login).getSingleResult();
-		System.out.println("findByLoginAndPassword "+ compte);
-		if(compte != null && compte.getPassword().equals(password))
+		System.out.println("findByLoginAndPassword "+ compte + " "+login+ " "+password);
+
+		if(compte != null ) {
+			System.out.println(compte.getPassword()+" EQUALS "+password);
+			if (compte.getPassword().equals(password))
 			return compte;
+		}
 		else
 			return null;
+		return null;
 	}
+
 
 	public EntityManagerFactory getEnf() {
 		return enf;

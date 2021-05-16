@@ -36,9 +36,7 @@
 						<td>${employee.title}</td>
 						<td>${employee.manager.firstName}
 							${employee.manager.lastName}</td>
-						<td data-value=>
-<%-- 						href="${pageContext.request.contextPath}/listesub?idmanager=${employee.empId}"> --%>
-							
+						<td data-value=>							
 									<a  class="btn btn-primary" type="submit" 
 									href="${pageContext.request.contextPath}/editemployee?empId=${employee.empId}">
 									<spring:message	code="edit" /></a>
@@ -56,7 +54,7 @@
 		</table>
 
 		<form action="getaddemployee" method="get">
-			<div class="form-group">
+			<div class="form-group marginBottom10">
 				<br> <input type="submit" name="submit"
 					class="btn btn-secondary btn-lg"
 					value="<spring:message	code="add.emp" />">

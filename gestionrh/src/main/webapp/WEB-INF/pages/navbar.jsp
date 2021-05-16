@@ -42,18 +42,18 @@
 		
 			<a class="nav-link"
 				href="${pageContext.request.contextPath}/listeemployee?lang=en">
-				<img
+				<img class="pays"
 				src="${pageContext.request.contextPath}/styles/icon/angleterre.png"
 				alt="English" />
 			</a> <a class="nav-link"
 				href="${pageContext.request.contextPath}/listeemployee?lang=fr">
-				<img src="${pageContext.request.contextPath}/styles/icon/france.png"
+				<img class="pays" src="${pageContext.request.contextPath}/styles/icon/france.png"
 				alt="Français" />
 			</a> <a class="nav-link"
 				href="${pageContext.request.contextPath}/loginlogout"> <spring:message
 					code="navbar.logout" />
 			</a>
-			<span>Connecté : ${compte.login}</span>
+			<span><spring:message code="navbar.connected" />${compte.login}</span>
 		</div>
 	</nav>
 </header>

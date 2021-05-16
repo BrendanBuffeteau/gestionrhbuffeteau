@@ -68,7 +68,10 @@
 								</form:select>
 
 								<div>
-									<button class="w-100 btn btn-lg btn-primary" type="submit"><spring:message	code="save" /></button>
+									<button class="w-100 btn btn-lg btn-primary marginBottom10" type="submit"><spring:message	code="save" /></button>
+								</div>
+								<div>
+									<a href="${pageContext.request.contextPath}/listeemployee" class="w-100 btn btn-lg btn-primary marginBottom10"><spring:message	code="backlist" /></a>
 								</div>
 							</form:form>
 						</div>

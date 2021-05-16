@@ -164,7 +164,7 @@ public class ListController {
 	@GetMapping(path = "/getaddemployee")
 	public String getAddEmployee(Model model) {
 		model.addAttribute("employee", new EmployeeDto());
-		List<Employee> listemanager = empservice.getManagers();
+		List<Employee> listemanager = empservice.getAll();
 		model.addAttribute("employees", listemanager);
 		
 		List<Department> listedepartment = deptservice.getAll();

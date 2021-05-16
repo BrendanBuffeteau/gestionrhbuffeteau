@@ -19,13 +19,15 @@
 				style="width: 100%">
 				<thead>
 					<tr>
-						<th>No. and id</th>
+						<th>No.</th>
+						<th>id</th>
 						<th><spring:message code="emp.firstname" /><span> </span> <spring:message
 								code="emp.lastname" /></th>
 						<th><spring:message code="emp.startdate" /></th>
+						
 						<th><spring:message code="emp.title" /></th>
 						<th><spring:message code="emp.superior" /></th>
-						<th><spring:message code="edit.delete" /></th>
+					
 					</tr>
 				</thead>
 				<c:if test="${not empty employeeswochiefdto.listempwochief}">
@@ -33,7 +35,8 @@
 						varStatus="status">
 						<tr id="tr-id-1" class="tr-class-1" data-title="bootstrap table"
 							data-object='{"key": "value"}'>
-							<td>${status.count} <form:input disabled="true" path="listempwochief[${status.index}].empId" /></td>
+							<td>${status.count}</td>
+							<td>${employeedto.empId}</td>
 							<td>${employeedto.firstName} ${employeedto.lastName}</td>
 							<td>${employeedto.startDate}</td>
 							<td>${employeedto.title}</td>
@@ -50,21 +53,12 @@
 									</c:if>
 							</form:select>
 							</td>
-							<td data-value=>
-					<a  class="btn btn-primary" type="submit" 
-									href="${pageContext.request.contextPath}/editemployee?empId=${employee.empId}">
-									<spring:message	code="edit" /></a>
-								
-									<a href="${pageContext.request.contextPath}/deleteemployeeparam?empId=${employee.empId}"
-										onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ? : ${employee.firstName} ${employee.lastName}')"
-										 class="btn btn-danger" type="submit"
-										><spring:message	code="delete" /></a>
-							</td>
+							
 						</tr>
 					</c:forEach>
 				</c:if>
 			</table>
-			<input type="submit" class="btn btn-secondary btn-lg" value="<spring:message code="save.managers" />" />
+			<input type="submit" class="btn btn-secondary btn-lg marginBottom10" value="<spring:message code="save.managers" />" />
 		</form:form>
 		
 	</div>

@@ -17,7 +17,9 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
+		
 		registry.addInterceptor(new LogInterceptor()).addPathPatterns("/*");
+		
 		LocaleChangeInterceptor localInterceptor = new LocaleChangeInterceptor();
 		localInterceptor.setParamName("lang");
 		

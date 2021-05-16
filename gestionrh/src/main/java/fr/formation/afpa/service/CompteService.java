@@ -21,6 +21,7 @@ public class CompteService {
 		if (dao.findByLoginAndPassword(login, pwd) != null) {
 			Compte compte = dao.findByLoginAndPassword(login, pwd);
 			dao.commitTransaction();
+			System.out.println("Compte Service return"+compte);
 			return compte;
 		} else
 			return null;

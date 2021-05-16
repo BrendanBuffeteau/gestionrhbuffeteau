@@ -67,7 +67,7 @@ public class EditEmpController {
 		List<Department> listedepartment = deptservice.getAll();
 		model.addAttribute("departments",listedepartment);
 		
-		List<Employee> listemanager = empservice.getManagers();
+		List<Employee> listemanager = empservice.getAll();
 		List<EmployeeDto> listemanagerdto = new ArrayList<EmployeeDto>();
 		for (Employee e : listemanager) listemanagerdto.add(new EmployeeDto(e));
 		model.addAttribute("managers", listemanagerdto);

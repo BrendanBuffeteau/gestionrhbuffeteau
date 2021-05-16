@@ -62,7 +62,7 @@ public class LogController {
 
 	@PostMapping(path = "/loginaction")
 	public String getLoginLogout(HttpServletRequest request,@ModelAttribute Compte compte, Model model, BindingResult result) {
-		System.out.println(compte);
+		System.out.println("getLoginLogout"+compte);
 		try {
 			if (cptservice.findByLogingAndPassword(compte.getLogin(), compte.getPassword()) != null) {
 			
@@ -71,10 +71,12 @@ public class LogController {
 				model.addAttribute("compte",compte);
 				return "accueil";
 			} else {
-				return "accueil";
+				model.addAttribute("loginerror", true);
+				return "login";
 			}
 		} catch (NoResultException nre) {
 			System.out.println("Aucun resultat");
+			model.addAttribute("loginerror", true);
 			return "login";
 		}
 

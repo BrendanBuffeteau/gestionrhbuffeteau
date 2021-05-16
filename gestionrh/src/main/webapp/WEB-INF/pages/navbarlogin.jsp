@@ -30,13 +30,13 @@
 		</div>
 		<div class="d-flex flex-row-reverse bd-highlight">
 		 <a class="nav-link"
-				href="${pageContext.request.contextPath}/loginlogout?lang=en">
-				<img
+				href="${pageContext.request.contextPath}/?lang=en">
+			<img class="pays"
 				src="${pageContext.request.contextPath}/styles/icon/angleterre.png"
 				alt="English" />
 			</a> <a class="nav-link"
-				href="${pageContext.request.contextPath}/loginlogout?lang=fr">
-				<img src="${pageContext.request.contextPath}/styles/icon/france.png"
+				href="${pageContext.request.contextPath}/?lang=fr">
+				<img class="pays" src="${pageContext.request.contextPath}/styles/icon/france.png"
 				alt="Français" />
 			</a>
 				<a class="nav-link"

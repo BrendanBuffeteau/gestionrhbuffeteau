@@ -55,7 +55,7 @@
 		<form action="getaddemployee">
 			<div class="form-group">
 				<br> <input type="submit" name="submit"
-					class="btn btn-secondary btn-lg"
+					class="btn btn-secondary btn-lg marginBottom10"
 					value="<spring:message	code="add.emp" />">
 			</div>
 		</form>
