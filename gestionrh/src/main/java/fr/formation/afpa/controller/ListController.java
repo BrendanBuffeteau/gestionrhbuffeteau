@@ -34,7 +34,8 @@ public class ListController {
 	EmployeeService empservice;
 	DepartmentService deptservice;
 	@SuppressWarnings("unused")
-	private static final Log log = LogFactory.getLog(ListController.class);
+
+
 	
 	   @InitBinder
 	    public void initBinder(WebDataBinder binder) {

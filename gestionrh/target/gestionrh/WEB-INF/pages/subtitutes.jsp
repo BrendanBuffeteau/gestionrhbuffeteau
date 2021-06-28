@@ -12,7 +12,7 @@
 	<jsp:include page="navbar.jsp"></jsp:include>
 
 	<div class="container">
-		<h1 class="titre">Liste Subtitutes</h1>
+		<h1 class="titre"><spring:message code="navbar.subs" /></h1>
 		<table id="employesTable" class="table table-striped"
 			style="width: 100%">
 			<thead>
@@ -37,16 +37,15 @@
 						<td>${employee.manager.firstName}
 							${employee.manager.lastName}</td>
 						<td data-value=>
-
-							<form action="listecustomer" method="post">
-								<input type="hidden" name="custid" value="customer.custId">
-								<button name="update" class="btn btn-primary" type="submit"
-									value="update">Edition</button>
-								<button
-									onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ? ID : ${employee.empId}')"
-									name="delete" class="btn btn-danger" type="submit"
-									value="delete">Suppression</button>
-							</form>
+								<form:form action="deleteemployee" method="post">
+									<input type="hidden" name="custid" value="customer.custId">
+									<button name="update" class="btn btn-primary" type="submit"
+										value="update"><spring:message	code="edit" /></button>
+									<button
+										onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ? : ${employeedto.firstName} ${employeedto.lastName}')"
+										name="delete" class="btn btn-danger" type="submit"
+										value="delete"><spring:message	code="delete" /></button>
+								</form:form>
 						</td>
 					</tr>
 

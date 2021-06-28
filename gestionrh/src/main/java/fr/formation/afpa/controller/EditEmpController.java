@@ -34,13 +34,13 @@ public class EditEmpController {
 	DepartmentService deptservice;
 	@SuppressWarnings("unused")
 	private static final Log log = LogFactory.getLog(EditEmpController.class);
-	
-	   @InitBinder
-	    public void initBinder(WebDataBinder binder) {
-	        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	        dateFormat.setLenient(false);
-	        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-	    }
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	}
 
 	public EditEmpController() {
 		System.out.println("EditEmpController default");
@@ -50,82 +50,96 @@ public class EditEmpController {
 	public EditEmpController(EmployeeService service, DepartmentService deptservice) {
 		System.out.println("EditEmpController service");
 		this.empservice = service;
-		this.deptservice= deptservice;
+		this.deptservice = deptservice;
 	}
-
 
 	@RequestMapping(value = "/editemployee", method = RequestMethod.GET, params = { "empId" })
 	public String getEditEmployee(Model model, @RequestParam(name = "empId", required = true) String empId) {
 		Employee emp = new Employee();
 		emp.setFirstName("Test name");
 		Integer empIdint = Integer.parseInt(empId);
-		for (int i=0;i<50;i++)System.out.println(empIdint);
-		emp=empservice.findById(empIdint);
+		for (int i = 0; i < 50; i++)
+			System.out.println(empIdint);
+		emp = empservice.findById(empIdint);
 		EmployeeDto empdto = new EmployeeDto(emp);
 		model.addAttribute("employee", empdto);
-		
+
 		List<Department> listedepartment = deptservice.getAll();
-		model.addAttribute("departments",listedepartment);
-		
+		model.addAttribute("departments", listedepartment);
+
 		List<Employee> listemanager = empservice.getAll();
 		List<EmployeeDto> listemanagerdto = new ArrayList<EmployeeDto>();
-		for (Employee e : listemanager) listemanagerdto.add(new EmployeeDto(e));
+		for (Employee e : listemanager)
+			listemanagerdto.add(new EmployeeDto(e));
 		model.addAttribute("managers", listemanagerdto);
-		
+
 		return "editemployee";
 	}
-	
+
 	@RequestMapping(path = "/editemployeepost", method = RequestMethod.POST)
-	public String getSaveEditEmploye(Model model,@ModelAttribute EmployeeDto employee, @RequestParam Integer manager, Date startDate, Integer department) {
-		
-		for (int i=0;i<50;i++)System.out.println(employee.toString());
-		
+	public String getSaveEditEmploye(Model model, @ModelAttribute EmployeeDto employee, @RequestParam Integer manager,
+			Date startDate, Integer department) {
+
+		for (int i = 0; i < 50; i++)
+			System.out.println(employee.toString());
+
 		Employee emp = empservice.findById(employee.getEmpId());
 		emp.setFirstName(employee.getFirstName());
 		emp.setLastName(employee.getLastName());
 		emp.setTitle(employee.getTitle());
 		emp.setStartDate(startDate);
-		
+
 		if (manager != null) {
 			Employee employe = empservice.findById(manager);
 			emp.setManager(employe);
-		}
-		else if (manager == null){
+		} else if (manager == null) {
 			emp.setManager(null);
 		}
-		
+
 		if (department != null) {
 			Department dept = deptservice.findById(department);
 			emp.setDepartment(dept);
 		}
 
 		empservice.update(emp);
-		
+
 		List<Employee> listemp = empservice.getAll();
 		model.addAttribute("employees", listemp);
 		return "listeemployee";
 	}
-	
 
 	@RequestMapping(value = "/deleteemployeeliste", method = RequestMethod.GET, params = { "empId" })
 	public String getDeleteEmployee(Model model, @RequestParam(name = "empId", required = true) String empId) {
 		Integer empIdint = Integer.parseInt(empId);
-		
+
+		Employee todelete = empservice.findById(empIdint);
+		Employee managerofdeleted = null;
+		if (todelete.getManager() != null) {
+			managerofdeleted = todelete.getManager();
+		}
+
 		List<Employee> listesub = empservice.getSubs(empIdint);
-		if (listesub.isEmpty()==false) {
-			for(Employee e : listesub) {
-				e.setManager(null);
-				empservice.update(e);
+		if (listesub.isEmpty() == false) {
+			if (todelete.getManager() == null) {
+				for (Employee e : listesub) {
+					e.setManager(null);
+					empservice.update(e);
+				}
+			} else if (todelete.getManager() != null) {
+				for (Employee e : listesub) {
+					e.setManager(managerofdeleted);
+					empservice.update(e);
+				}
 			}
 		}
-		
-		for (int i=0;i<50;i++)System.out.println(empIdint);
+
+		for (int i = 0; i < 50; i++)
+			System.out.println(empIdint);
 		empservice.deleteById(empIdint);
-		
+
 		List<Employee> listemp = empservice.getAll();
 		model.addAttribute("employees", listemp);
 		return "listeemployee";
 	}
-	
-	
+
 }

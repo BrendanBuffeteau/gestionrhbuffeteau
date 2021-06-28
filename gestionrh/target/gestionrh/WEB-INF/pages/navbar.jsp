@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <header>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
@@ -36,19 +37,23 @@
 			</div>
 		</div>
 		<div class="d-flex flex-row-reverse bd-highlight">
+		
+ 		<c:set scope="session" var="compte" value="${compte}" /> 
+		
 			<a class="nav-link"
 				href="${pageContext.request.contextPath}/listeemployee?lang=en">
-				<img
+				<img class="pays"
 				src="${pageContext.request.contextPath}/styles/icon/angleterre.png"
 				alt="English" />
 			</a> <a class="nav-link"
 				href="${pageContext.request.contextPath}/listeemployee?lang=fr">
-				<img src="${pageContext.request.contextPath}/styles/icon/france.png"
+				<img class="pays" src="${pageContext.request.contextPath}/styles/icon/france.png"
 				alt="Français" />
 			</a> <a class="nav-link"
 				href="${pageContext.request.contextPath}/loginlogout"> <spring:message
 					code="navbar.logout" />
 			</a>
+			<span><spring:message code="navbar.connected" />${compte.login}</span>
 		</div>
 	</nav>
 </header>

@@ -7,7 +7,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
 			<a class="navbar-brand"
-				href="${pageContext.request.contextPath}/accueil"> <spring:message
+				href="${pageContext.request.contextPath}/accueilunlog"> <spring:message
 					code="navbar.welcome" />
 			</a>
 
@@ -20,25 +20,23 @@
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
 					<a class="nav-link" aria-current="page"
-						href="${pageContext.request.contextPath}/contact"> <spring:message
+						href="${pageContext.request.contextPath}/contactunlog"> <spring:message
 							code="navbar.contact" />
-					</a> <a class="nav-link" href="${pageContext.request.contextPath}/who">
+					</a> <a class="nav-link" href="${pageContext.request.contextPath}/whounlog">
 						<spring:message code="navbar.who" />
 					</a>
-
-
 				</div>
 			</div>
 		</div>
 		<div class="d-flex flex-row-reverse bd-highlight">
 		 <a class="nav-link"
-				href="${pageContext.request.contextPath}/listeemployee?lang=en">
-				<img
+				href="${pageContext.request.contextPath}/?lang=en">
+			<img class="pays"
 				src="${pageContext.request.contextPath}/styles/icon/angleterre.png"
 				alt="English" />
 			</a> <a class="nav-link"
-				href="${pageContext.request.contextPath}/listeemployee?lang=fr">
-				<img src="${pageContext.request.contextPath}/styles/icon/france.png"
+				href="${pageContext.request.contextPath}/?lang=fr">
+				<img class="pays" src="${pageContext.request.contextPath}/styles/icon/france.png"
 				alt="Français" />
 			</a>
 				<a class="nav-link"

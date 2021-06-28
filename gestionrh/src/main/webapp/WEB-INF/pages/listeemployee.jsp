@@ -42,7 +42,7 @@
 									<spring:message	code="edit" /></a>
 								
 									<a href="${pageContext.request.contextPath}/deleteemployeeliste?empId=${employee.empId}"
-										onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ? : ${employee.firstName} ${employee.lastName}')"
+										onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet employé ? : ${employee.firstName} ${employee.lastName}')"
 										 class="btn btn-danger" type="submit"
 										><spring:message	code="delete" /></a>
 					

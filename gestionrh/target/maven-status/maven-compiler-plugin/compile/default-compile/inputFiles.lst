@@ -1,5 +1,6 @@
 B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\dto\EmployeeDto.java
 B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\service\EmployeeService.java
+B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\controller\EditEmpController.java
 B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\dao\DepartmentDaoJpa.java
 B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\dto\EmployeesWoChiefDto.java
 B:\github\gestionrhbuffeteau\gestionrh\src\main\java\fr\formation\afpa\config\WebMvcConfig.java

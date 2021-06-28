@@ -8,8 +8,9 @@
 <jsp:include page="head.jsp"></jsp:include>
 <body>
 
-		<jsp:include page="navbar.jsp"></jsp:include>
-<div class="container">
+		<jsp:include page="navbarlogin.jsp"></jsp:include>
+
+	<div class="container">
 		<h1>Nous sommes GestionRH</h1>
 	</div>
 		<jsp:include page="footer.jsp"></jsp:include>

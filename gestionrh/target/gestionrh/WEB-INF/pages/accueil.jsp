@@ -9,9 +9,12 @@
 <body>
 
 		<jsp:include page="navbar.jsp"></jsp:include>
-
+<br>
+<br>
 	<div class="container">
-		<h3>Accueil</h3>
+		<h1><spring:message code="label.title" /> ${compte.login }</h1>
+		<img src="${pageContext.request.contextPath}/styles/img/digital.jpg"
+				 />
 	</div>
 	<footer class="footer">
 		<jsp:include page="footer.jsp"></jsp:include>

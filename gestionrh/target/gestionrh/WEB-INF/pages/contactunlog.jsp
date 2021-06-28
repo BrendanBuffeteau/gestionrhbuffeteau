@@ -8,10 +8,9 @@
 <jsp:include page="head.jsp"></jsp:include>
 <body>
 
-		<jsp:include page="navbar.jsp"></jsp:include>
+		<jsp:include page="navbarlogin.jsp"></jsp:include>
 
-<br><br><br><br>
-	<section class="h-300">
+		<section class="h-300">
 		<div class="container h-300">
 			<div class="row justify-content-md-center h-100">
 				<div class="card-wrapper">

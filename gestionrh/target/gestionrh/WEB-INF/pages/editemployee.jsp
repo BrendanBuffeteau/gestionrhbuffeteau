@@ -20,23 +20,29 @@
 				<div class="card-wrapper">
 					<div class="card fat">
 						<div class="card-body">
-							<h4 class="card-title"><spring:message	code="add.emp" /></h4>
-							<form:form action="addemployee" method="POST"
+							<h4 class="card-title"><spring:message	code="edit.emp" /></h4>
+							<form:form action="editemployeepost" method="POST"
 								modelAttribute="employee">
+								<form:input path="empId" hidden="true"/>
 								<div class="form-floating marginBottom10">
 									<form:input path="firstName" type="text" class="form-control"
-										id="floatingInput" />
+										id="floatingInput" value="${firstName}" />
 									<label for="floatingInput"><spring:message	code="emp.firstname" /></label>
 								</div>
 								<div class="form-floating marginBottom10">
 									<form:input path="lastName" type="text" class="form-control"
-										id="floatingPassword" />
+										id="floatingPassword" value="${lastName}"/>
 									<label for="floatingPassword"><spring:message	code="emp.lastname" /></label>
 								</div>
 								<div class="form-floating marginBottom10">
 									<form:input path="startDate" type="date" class="form-control"
-								id="floatingPassword" /> 
+								id="floatingPassword" value="${startDate}" /> 
 									<label for="floatingPassword"><spring:message	code="emp.startdate" /></label>
+								</div>
+								<div class="form-floating marginBottom10">
+									<form:input path="endDate" type="date" class="form-control"
+								id="floatingPassword" value="${endDate}" /> 
+									<label for="floatingPassword"><spring:message	code="emp.enddate" /></label>
 								</div>
 								<spring:message	code="emp.title" />
 									<form:select path="title" class="form-select marginBottom10"
@@ -53,15 +59,14 @@
 								<form:select path="department" class="form-select marginBottom10"
 									aria-label="Default select example">
 									<c:forEach items="${departments}" var="department">
-										<form:option  value="${department.deptId}">${department.name}
-											${employee.lastName}</form:option>
+										<form:option  value="${department.deptId}" > ${department.name} </form:option>
 									</c:forEach>
 								</form:select>
 								<spring:message	code="emp.superior" />
 								<form:select path="manager" class="form-select marginBottom10"
 									aria-label="Default select example">
 								<form:option value="">-- <spring:message	code="managerchoice" /> --</form:option>
-									<c:forEach items="${employees}" var="employee">
+									<c:forEach items="${managers}" var="employee">
 										<form:option var="idmanager" value="${employee.empId}">${employee.firstName}
 											${employee.lastName}</form:option>
 									</c:forEach>
